@@ -1,0 +1,12 @@
+{
+  "codeFold" : true,
+  "saveHTMLToTextarea" : true,
+  "searchReplace" : true,
+  "htmlDecode" : "style,script,iframe|on*",
+  "emoji" : true,
+  "taskList" : true,
+  "tocm"  : true,
+  "tex" : true,
+  "flowChart" : true,
+  "sequenceDiagram" : true
+}

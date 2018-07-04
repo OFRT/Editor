@@ -1,0 +1,13 @@
+div.div-layout {
+  overflow:hidden;
+  margin: auto;
+}
+div.div-footer {
+  height: 5%;
+  color: #000;
+  font-size:15px;
+  text-align: center;
+}
+div.div-header {
+  text-align: center;
+}
