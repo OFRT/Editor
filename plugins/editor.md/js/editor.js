@@ -45,7 +45,7 @@ function openMD(mdSkin, pccss) {
         codeFold : true,
         saveHTMLToTextarea : true,
         searchReplace : true,
-        // htmlDecode : "style,script,iframe|on*",
+        htmlDecode : "style,script,iframe|on*",
         emoji : true,
         taskList : true,
         tocm  : true,

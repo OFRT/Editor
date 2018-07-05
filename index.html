@@ -15,6 +15,7 @@
 	<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 
 	<link rel="stylesheet" href="plugins/zeroModal/css/zeroModal.css">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
 
@@ -56,24 +57,24 @@
         <div class="sidebar-menu">
             <ul>
                 <li class="header-menu"><span>菜单</span></li>
-                <li class="sidebar-dropdown">
-                    <a  href="#" ><i class="fa fa-tv"></i><span>模式</span><!-- <span class="label label-danger">New</span> --></a>
+                <!-- <li class="sidebar-dropdown">
+                    <a  href="#" ><i class="fa fa-tv"></i><span>模式</span><span class="label label-danger">New</span></a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="#" onclick="markdownEditor()">Markdown<!-- <span class="label label-success">10</span> --></a> </li>
-                            <!-- <li><a href="#">submenu 2</a></li> -->
-                            <!-- <li><a href="#">submenu 3</a></li> -->
-                            <!-- <li><a href="#">submenu 4</a></li> -->
+                            <li><a href="#" onclick="markdownEditor()">Markdown<span class="label label-success">10</span></a> </li>
+                            <li><a href="#">submenu 2</a></li>
+                            <li><a href="#">submenu 3</a></li>
+                            <li><a href="#">submenu 4</a></li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
                 <li class="sidebar-dropdown">
                     <a href="#"><i class="fa fa-photo"></i><span>编辑</span><!-- <span class="badge">3</span> --></a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="#" onclick="open()">打开文件</a></li>
+                            <li><a href="#" onclick="openFile()">打开文件</a></li>
                             <li><a href="#" onclick="save()">保存文件</a></li>
-                            <li><a href="#" onclick="clear()">清空内容</a></li>
+                            <li><a href="#" onclick="clearData()">清空内容</a></li>
                             <!-- <li><a href="#">submenu 4</a></li> -->
                         </ul>
                     </div>
@@ -82,19 +83,16 @@
                     <a href="#"><i class="fa fa-bar-chart-o"></i><span>模板</span></a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="#">submenu 1</a></li>
-                            <!-- <li><a href="#">submenu 2</a></li> -->
-                            <!-- <li><a href="#">submenu 3</a></li> -->
-                            <!-- <li><a href="#">submenu 4</a></li> -->
-                        </ul>
+													<li><a href="#" onclick="changeMouldMD('README.md','file')">readme</a></li>
+												</ul>
                     </div>
                 </li>
 								<li class="sidebar-dropdown">
                     <a href="#"><i class="fa fa-envelope"></i><span>模块</span></a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="#">submenu 1</a></li>
-                            <li><a href="#">submenu 2</a></li>
+													<li><a href="#" onclick="appendMouldMD('plugins/editor.md/docs/flowchart.md','file')">流程图</a></li>
+                          <li><a href="#" onclick="appendMouldMD('plugins/editor.md/docs/sequence.md','file')">序列图</a></li>
                             <!-- <li><a href="#">submenu 3</a></li> -->
                             <!-- <li><a href="#">submenu 4</a></li> -->
                         </ul>
@@ -184,7 +182,6 @@
 
 	<script src="js/index.js"></script>
 	<script src="js/dialog.js"></script>
-
 
 
 </body>

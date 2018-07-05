@@ -53,9 +53,10 @@ function reName(name, defaultName) {
 
 // 打开 - 对话框 - 主要针对要打开的文件 - 请传入 编辑器对象
 function openDialog(objEditor) {
+
   if (ifpc) {
-    widthV = '55%';
-    heightV = '65%';
+    widthV = '20%';
+    heightV = '35%';
   } else {
     widthV = '85%';
     heightV = '30%';
@@ -63,17 +64,41 @@ function openDialog(objEditor) {
 
   zeroModal.show({
       title: '打开',
-      content: "待测试...",
-      // url:'',
+      // content: "待测试...",
+      url:'plugins/zeroModal/code/fileInput.html',
       transition:true,
-      opacity: 0.9, // 遮罩层的透明度
       ok: true,
-      cancel: true,
+      cancel: false,
       esc: true,
       width: widthV, //宽度（px、pt、%）
       height: heightV, //高度（px、pt、%）
       okFn: function() {
-        console.log("OK fn");
+        if ( document.getElementById('files').value != "" ) {
+          var selectedFile = document.getElementById('files').value;
+          var oldName = document.getElementById('a-fileName').innerHTML;
+          var oldNameSuffix = oldName.substring(oldName.lastIndexOf("."), oldName.length);
+          var newName;
+          var mResult = false;
+
+          // 判断输入的文件名格式是否正确
+          if ( selectedFile.lastIndexOf(oldNameSuffix) > 0 ) mResult = true;
+
+          if ( mResult ) {
+            // 替换当前网页文件名
+            if ( selectedFile.lastIndexOf("/") > 0)
+              newName = selectedFile.substring(selectedFile.lastIndexOf("/") + 1, selectedFile.length);
+            else newName = selectedFile.substring(selectedFile.lastIndexOf("\\") + 1, selectedFile.length);
+            // 替换当前网页编辑器内容
+            var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+            reader.readAsText(document.getElementById("files").files[0],'gb2312');//读取文件的内容，注意编码方式
+            reader.onload = function(){
+              if (mdEditor) objEditor.setMarkdown(this.result);
+              document.getElementById('a-fileName').innerHTML = newName;
+            };
+          } else {
+            zeroModal.error("文件格式错误！");
+          }
+        }
       }
   });
 }
@@ -94,7 +119,7 @@ function saveDialog(saveData) {
 
   // 判断 要保存的数据 是否 为 null
   if (!saveData) {
-    console.log("保存失败！编辑器为空");
+//  console.log("保存失败！编辑器为空");
     zeroModal.error('保存失败！编辑器为空');
   } else {
     zeroModal.show({
@@ -119,11 +144,11 @@ function saveDialog(saveData) {
         }
         // 保存文件
         var blob = new Blob([saveData], {
-            type: "application/txt;charset=utf-8"
+            type: "text/plain;charset=utf-8"
         });
         saveAs(blob, fName);
         // 保存成功的提示
-        console.log(fName + " 保存成功!");
+//      console.log(fName + " 保存成功!");
         zeroModal.success(fName + " 保存成功!");
       }
     });
@@ -142,20 +167,23 @@ function foreword() {
 
   zeroModal.show({
       title: '前言',
-      content: "待更新...",
-      // url:'foreword.txt',
+      // content: "待更新...",
+      url:'foreword.html',
+      // url:'README.md',
       transition:true,
       opacity: 0.9, // 遮罩层的透明度
       ok: true,
       cancel: false,
-      esc: true,
+      esc: false,
       width: widthV, //宽度（px、pt、%）
       height: heightV, //高度（px、pt、%）
       okFn: function() {
-        console.log("OK fn");
+
       }
   });
 }
+
+// 提示
 
 // 对话框测试
 function dialog_test1() {

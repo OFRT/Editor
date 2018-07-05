@@ -26,7 +26,8 @@ function indexInit() {
 
   // 前言
   if (ifpc) {
-    foreword();
+    setTimeout('foreword()', 2000);
+    // foreword();
   } else {
     zeroModal.error('暂不支持手机编辑');
   }
@@ -68,18 +69,18 @@ function changeSkin(mode) {
 function autoOpenMD() {
   var now = new Date();
   var hour = now.getHours();
-  console.log("当前是：",hour + "点");
+//console.log("当前是：",hour + "点");
 
   // 先换主页皮肤，再打开 Editor.md
   // 白天
   if ( 6 <= hour && hour <= 18 ) {
-    console.log("白天");
+//  console.log("白天");
     // 1
     indexSkinSun();
     // 2
     openMD("sun", ifpc);
   } else {
-    console.log("晚上");
+//  console.log("晚上");
     // 1
     indexSkinNight();
     // 2
@@ -107,7 +108,7 @@ function indexSkinNight() {
 
 // 主要功能
 // 打开
-function open() {
+function openFile() {
   if (mdEditor) openDialog(mdEditor);
 }
 // 保存
@@ -115,8 +116,15 @@ function save() {
   if (mdEditor) saveDialog(mdEditor.getMarkdown());
 }
 // 清空输入
-function clear() {
-  if (mdEditor) mdEditor.clear();
+function clearData() {
+  if (mdEditor) {
+    if (mdEditor.getMarkdown() != "") {
+      mdEditor.clear();
+      zeroModal.success("已清空编辑器~");
+    } else {
+      zeroModal.error("编辑器为空！");
+    }
+  }
 }
 // 搜索
 function search() {
@@ -131,11 +139,12 @@ jQuery(function($) {
   $("#a-fileName").click(function(){
     if (document.getElementById('a-fileName').innerHTML == "untitled.md") {
       if (mdEditor && mdEditor.getMarkdown() == "") {
-        openDialog();
+        openDialog(mdEditor);
+      } else {
+        save();
       }
     } else {
       save();
     }
   });
-
 });

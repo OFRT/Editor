@@ -31,11 +31,11 @@ var ifpc = true;
             scrollInertia: 300
           });
           $(".sidebar-content").addClass("desktop");
-          console.log("电脑");
+//        console.log("电脑");
           ifpc = true;
         } else {
           $("#desktop-menu").hide();
-          console.log("手机");
+//        console.log("手机");
           ifpc = false;
         }
 

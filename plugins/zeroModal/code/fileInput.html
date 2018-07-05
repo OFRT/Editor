@@ -1,0 +1,27 @@
+
+<div>
+  <div>
+    <input type="file" id="files" style="display:none;" onchange="fileimport();"/>
+    <input class="btn btn-success" style="width:100%" type="button" id="import" value="选择文件"/>
+    <br>
+    <p id="fileR"></p>
+  </div>
+</div>
+
+<script>
+  // var txtdata;
+  function fileimport()
+  {
+    var selectedFile = document.getElementById("files").files[0];//获取读取的File对象
+    var name = selectedFile.name;//读取选中文件的文件名
+    var size = selectedFile.size;//读取选中文件的大小
+    document.getElementById('fileR').innerHTML = "文件名：" + name + "<br>&nbsp;&nbsp;&nbsp;大小：" + size;
+  }
+
+  $(document).ready(function(){
+    //alert("start");
+    $("#import").click(function(){//点击导入按钮，使files触发点击事件，然后完成读取文件的操作。
+      $("#files").click();
+    });
+  })
+</script>
