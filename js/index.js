@@ -1,16 +1,5 @@
 var indexSkin;
-var myDebug = false;
 
-// 关闭 Debug 模式
-function closeDebug() {
-  screenLog.destroy();
-  $("#li-debug").hide();
-}
-// 清空 Debug LOG
-function clearLog() {
-  screenLog.clear();
-  console.log("Debug LOG clear OK!");
-}
 //
 function markdownEditor() {
   // 打开编辑器
@@ -24,26 +13,17 @@ function markdownEditor() {
 // 主页初始化
 function indexInit() {
 
-  // 前言
-  if (ifpc) {
-    setTimeout('foreword()', 2000);
-    // foreword();
-  } else {
-    zeroModal.error('暂不支持手机编辑');
-  }
-
-  // debug 模式
-  if (myDebug) {
-    screenLog.init();
-    $("#li-debug").show();
-  } else {
-    $("#li-debug").hide();
-  }
-
   if ( !mdEditor ) {
     autoOpenMD();
     // 配置放入初始化里面了
     // configMD();
+  }
+
+  // 前言
+  if (ifpc) {
+    if (mdEditor) setTimeout('foreword()', 2000);
+  } else {
+    zeroModal.error('暂不支持手机编辑');
   }
 
 }
@@ -115,6 +95,14 @@ function openFile() {
 function save() {
   if (mdEditor) saveDialog(mdEditor.getMarkdown());
 }
+// 保存为 word
+function exportWord() {
+  if (mdEditor) html2wordDialog(mdEditor);
+}
+// 保存为 html
+function exportHTML() {
+  if (mdEditor) htmlexportDialog(mdEditor);
+}
 // 清空输入
 function clearData() {
   if (mdEditor) {
@@ -126,6 +114,7 @@ function clearData() {
     }
   }
 }
+//
 // 搜索
 function search() {
   mdEditor.serach('find');

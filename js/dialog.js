@@ -46,7 +46,7 @@ function reName(name, defaultName) {
     defaultSuffix = defaultName.substring(defaultSuffix, defaultName.length);
   } else {
     defaultSuffix = defaultName.substring(defaultSuffix, defaultName.length);
-    name = name.substring(0, suffix-1);
+    name = name.substring(0, suffix);
   }
   return name + defaultSuffix;
 }
@@ -154,7 +154,7 @@ function saveDialog(saveData) {
     });
   }
 }
-// 提示信息对话框
+// 前言信息对话框
 function foreword() {
 
   if (ifpc) {
@@ -183,24 +183,89 @@ function foreword() {
   });
 }
 
-// 提示
+function html2wordDialog(objEditor) {
 
-// 对话框测试
-function dialog_test1() {
-  console.log("dialog_test1");
-  zeroModal.show({
-      title: 'hello world',
-      // content: 'this is zeroModa',
-      url:'README.md',
-      transition:true,
-      ok: true,
-      cancel: true,
-      esc: true,
-      okFn: function() {
-        console.log("OK fn");
-      }
-  });
+  var fName = document.getElementById('a-fileName').innerHTML;
+
+  if (ifpc) {
+    widthV = '20%';
+    heightV = '30%';
+  } else {
+    widthV = '85%';
+    heightV = '30%';
+  }
+
+  if (!objEditor.getMarkdown()) {
+    zeroModal.error('导出失败！编辑器为空');
+  } else {
+    zeroModal.show({
+        title: '导出 Word',
+        // content: "待更新...",
+        url:'plugins/zeroModal/code/html2word.html',
+        // url:'README.md',
+        transition:true,
+        opacity: 0.3, // 遮罩层的透明度
+        ok: true,
+        cancel: false,
+        esc: false,
+        width: widthV, //宽度（px、pt、%）
+        height: heightV, //高度（px、pt、%）
+        okFn: function() {
+          // 查找对应ID的输入框，如果存在就把它的 value 赋给 fName。
+          if ( document.getElementById('input_html2word') ) {
+            if ( document.getElementById('input_html2word').value != "" ) {
+              // 更新后缀
+              fName = document.getElementById('input_html2word').value;
+            }
+          }
+          fName = reName(fName, "test.doc");
+          // 导出
+          var data = objEditor.getHTML();
+          wordExport(fName,data);
+        }
+    });
+  }
 }
-function dialog_test2() {
-  console.log(this.document.URL);
+
+function htmlexportDialog(objEditor) {
+
+  var fName = document.getElementById('a-fileName').innerHTML;
+
+  if (ifpc) {
+    widthV = '20%';
+    heightV = '30%';
+  } else {
+    widthV = '85%';
+    heightV = '30%';
+  }
+
+  if (!objEditor.getMarkdown()) {
+    zeroModal.error('导出失败！编辑器为空');
+  } else {
+    zeroModal.show({
+        title: '导出 HTML',
+        // content: "待更新...",
+        url:'plugins/zeroModal/code/htmlexport.html',
+        // url:'README.md',
+        transition:true,
+        opacity: 0.3, // 遮罩层的透明度
+        ok: true,
+        cancel: false,
+        esc: false,
+        width: widthV, //宽度（px、pt、%）
+        height: heightV, //高度（px、pt、%）
+        okFn: function() {
+          // 查找对应ID的输入框，如果存在就把它的 value 赋给 fName。
+          if ( document.getElementById('input_htmlexport') ) {
+            if ( document.getElementById('input_htmlexport').value != "" ) {
+              // 更新后缀
+              fName = document.getElementById('input_htmlexport').value;
+            }
+          }
+          fName = reName(fName, "test.html");
+          // 导出
+          htmlExport(fName,objEditor.getHTML());
+        }
+    });
+  }
 }

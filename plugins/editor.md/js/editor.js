@@ -108,16 +108,16 @@ function changeMouldMD(str, mode) {
     mdEditor.setMarkdown(str);
   }
 }
-// 模块
+// 模块 - 修改为光标位置插入模块
 function appendMouldMD(str, mode) {
   if ( mode == "file" ) {
     // 目标 是文件形式 - str 为 文件的URL
     $.get(str, function(md) {
-      mdEditor.appendMarkdown(md);
+      mdEditor.insertValue(md);
     });
   } else {
     // 目标 是字符串形式 - str 为 String
-    mdEditor.appendMarkdown(str);
+    mdEditor.insertValue(str);
   }
 }
 // 皮肤

@@ -74,6 +74,8 @@
                         <ul>
                             <li><a href="#" onclick="openFile()">打开文件</a></li>
                             <li><a href="#" onclick="save()">保存文件</a></li>
+														<li><a href="#" onclick="exportWord()">导出word</a></li>
+														<li><a href="#" onclick="exportHTML()">导出HTML</a></li>
                             <li><a href="#" onclick="clearData()">清空内容</a></li>
                             <!-- <li><a href="#">submenu 4</a></li> -->
                         </ul>
@@ -87,6 +89,7 @@
 												</ul>
                     </div>
                 </li>
+
 								<li class="sidebar-dropdown">
                     <a href="#"><i class="fa fa-envelope"></i><span>模块</span></a>
                     <div class="sidebar-submenu">
@@ -98,6 +101,7 @@
                         </ul>
                     </div>
                 </li>
+
                 <li class="sidebar-dropdown">
                     <a href="#"><i class="fa fa-diamond"></i><span>皮肤</span></a>
                     <div class="sidebar-submenu">
@@ -106,18 +110,6 @@
                             <li><a href="#" onclick="changeSkin('night')">晚上</a></li>
                             <!-- <li><a href="#">submenu 3</a></li> -->
                             <!-- <li><a href="#">submenu 4</a></li> -->
-                        </ul>
-                    </div>
-                </li>
-
-								<li id="li-debug" class="sidebar-dropdown">
-									<a href="#"><i class="fa fa-power-off"></i><span>DEBUG模式</span></a>
-                    <div class="sidebar-submenu">
-                        <ul>
-													<li><a href="#" onclick="dialog_test1()">对话框测试1</a></li>
-													<li><a href="#" onclick="dialog_test2()">对话框测试2</a></li>
-                          <li><a href="#" onclick="clearLog()">清除DEBUG</a></li>
-                          <li><a href="#" onclick="closeDebug()">关闭DEBUG</a></li>
                         </ul>
                     </div>
                 </li>
@@ -175,10 +167,9 @@
 
 	<!-- 导出 -->
 	<script type="text/javascript" src="plugins/wordexport/FileSaver.js"></script>
-	<script type="text/javascript" src="plugins/wordexport/jquery.wordexport.js"></script>
-
-	<!-- debug -->
-	<script src="plugins/debug/screenlog.min.js"></script>
+	<script type="text/javascript" src="plugins/wordexport/wordexport.js"></script>
+	<script type="text/javascript" src="plugins/wordexport/htmlexport.js"></script>
+	<!-- <script type="text/javascript" src="plugins/wordexport/jquery.wordexport.js"></script> -->
 
 	<script src="js/index.js"></script>
 	<script src="js/dialog.js"></script>
